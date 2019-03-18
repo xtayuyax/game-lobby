@@ -1,0 +1,58 @@
+<h1>Games</h1>
+<label>Search:</label>
+  <mat-form-field class="container-fluid">
+      <input matInput (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+
+<mat-table [dataSource]="gamesDataSource" class="mat-elevation-z8 is-column is-9">
+
+  <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.title}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="platform">
+      <mat-header-cell *matHeaderCellDef>Publisher</mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.platform}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="genre">
+      <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.genre}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="rating">
+      <mat-header-cell *matHeaderCellDef>Rating</mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.rating}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="publisher">
+      <mat-header-cell *matHeaderCellDef>Publisher</mat-header-cell>
+      <mat-cell *matCellDef="let game">{{game.publisher}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="release">
+      <mat-header-cell *matHeaderCellDef>Release</mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.release}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.status}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+          <a [routerLink] = "['/add-game']"><button>Add Game</button></a>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let game"> 
+        <a [routerLink] = "['/game/'+game._id]"><button>Update</button></a>
+        <button (click)="deleteGame(game._id)">Delete</button>
+      </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+
+</mat-table>

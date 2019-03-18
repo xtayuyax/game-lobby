@@ -1,0 +1,26 @@
+<h2>Add a Player</h2>
+<form [formGroup] = "addPlayerForm" (ngSubmit)="addPlayer()">
+  <div>
+    <label>Name:</label>
+    <input type="text" formControlName="name" name="name">
+  </div>
+  <div>
+    <label>Rank:</label>
+    <input type="text" formControlName="rank" name="rank">
+  </div>
+  <div>
+    <label>Score:</label>
+    <input type="text" formControlName="score" name="score">
+  </div>
+  <div>
+    <label>Time:</label>
+    <input type="text" formControlName="time" name="time">
+  </div>
+  <div>
+    <label>Favourite Game:</label>
+    <input type="text" formControlName="game" name="game">
+  </div>
+  <span *ngIf="!addPlayerForm.valid"><p>Fields cannot be empty!</p></span>
+  <a [routerLink]="['/players']"><button>Back</button></a>
+  <button type="submit" [disabled]="!addPlayerForm.valid">Add Player!</button>
+</form>

@@ -1,0 +1,114 @@
+<h1>Players</h1>
+    <label>Search:</label>
+    <mat-form-field class="container-fluid">
+        <input matInput (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+
+  <mat-table [dataSource]="playerDataSource" class="mat-elevation-z8 is-column is-9">
+  
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rank">
+        <mat-header-cell *matHeaderCellDef>Rank</mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.rank}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="score">
+        <mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.score}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+        <mat-cell *matCellDef="let player"> {{player.time}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="game">
+        <mat-header-cell *matHeaderCellDef>Favourite Game</mat-header-cell>
+        <mat-cell *matCellDef="let player">{{player.game}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let player"> 
+          <span *ngIf="!checkStatus(player.status)">Playing: </span>
+          {{player.status}}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef>
+          <a [routerLink] = "['/add-player']"><button>Add Player</button></a>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let player">
+          <a [routerLink] = "['/player/'+player._id]"><button>Update</button></a>
+          <button (click)="deletePlayer(player._id)">Delete</button>
+          <span *ngIf="checkStatus(player.status)">
+              <a [routerLink] = "['/join-game/'+player._id]"><button>Join Game!</button></a> 
+          </span>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+  
+  </mat-table>
+<!--<table class="players">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Rank
+    </th>
+    <th>
+      Score
+    </th>
+    <th>
+      Time
+    </th>
+    <th>
+      Favourite Game
+    </th>
+    <th>
+      Status
+    </th>
+    <th colspan="3">
+        <a [routerLink] = "['/add-player']"><button>Add Player</button></a>
+    </th>
+  </tr>
+  <tr *ngFor="let player of dataSource.data" >
+    <td>
+      {{player.name}}
+    </td>
+    <td>
+      {{player.rank}}
+    </td>
+    <td>
+      {{player.score}}
+    </td>
+    <td>
+      {{player.time}}
+    </td>
+    <td>
+      {{player.game}}
+    </td>
+    <td>
+      <span *ngIf="checkStatus(player)">Now Playing:</span>
+      {{player.status}}
+    </td>
+    <td>
+      <a [routerLink] = "['/player/'+player._id]"><button>Update</button></a>
+    </td>
+    <td>
+      <button (click)="deletePlayer(player._id)">Delete</button>
+    </td>
+    <td *ngIf="checkStatus(player)">
+      <a [routerLink] = "['/join-game/'+player._id]"><button>Join Game!</button></a>
+    </td>
+  </tr>
+</table> -->

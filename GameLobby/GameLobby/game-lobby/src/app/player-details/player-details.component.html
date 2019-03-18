@@ -1,0 +1,27 @@
+<div *ngIf="isDataAvailable">  
+  <h2>Update {{player.name}}</h2>
+  <form [formGroup] = "updatePlayerForm" (ngSubmit)="updatePlayer()">
+    <div>
+      <label>Name:</label>
+      <input type="text" formControlName="name" name="name" value="{{player.name}}">
+    </div>
+    <div>
+      <label>Rank:</label>
+      <input type="text" formControlName="rank" name="rank" value="{{player.rank}}">
+    </div>
+    <div>
+      <label>Score:</label>
+      <input type="text" formControlName="score" name="score" value="{{player.score}}">
+    </div>
+    <div>
+      <label>Time (hour):</label>
+      <input type="text" formControlName="time" name="time" value="{{player.time}}">
+    </div>
+    <div>
+      <label>Favourite Game:</label>
+      <input type="text" formControlName="game" name="game" value="{{player.game}}">
+    </div>
+    <div *ngIf="updatePlayerForm"><p>Fields cannot be empty!</p></div>
+    <a [routerLink]="['/players']"><button>Back</button></a>  
+    <button type="submit" [disabled]="!updatePlayerForm.valid">Add Game!</button>
+  </form>

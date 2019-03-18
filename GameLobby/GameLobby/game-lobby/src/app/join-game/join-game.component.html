@@ -1,0 +1,28 @@
+<div *ngIf="isDataAvailable">
+  <h2>{{player.name}}</h2>
+  <form [formGroup] = "joinGameForm" (ngSubmit)="updatePlayer()" nGNativeValidate>
+    <label>Name: </label>
+    <span>{{player.name}}</span>
+    <br>
+    <label>Rank: </label>
+    <span>{{player.rank}}</span>
+    <br>
+    <label>Score: </label>
+    <span>{{player.score}}</span>
+    <br>
+    <label>Time: </label>
+    <span>{{player.time}}</span>
+    <br>
+    <label>Favourite Game: </label>
+    <span>{{player.game}}</span>
+    <br>
+    <label>Customer</label>
+    <select formControlName="status" name = "status" required>
+      <option disabled selected value="">Select a game</option>
+      <option *ngFor="let game of games">{{game.title}}</option>
+    </select>
+    <br>
+    <a [routerLink]="['/players']"><button>Back</button></a>
+    <button type="submit" [disabled]="!joinGameForm.valid">Join Game!</button>
+  </form>
+</div>
